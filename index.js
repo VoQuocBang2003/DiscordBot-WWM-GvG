@@ -703,6 +703,14 @@ client.on('interactionCreate', async i => {
 });
 
 // ================= LOGIN =================
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot is alive");
+});
+
+app.listen(process.env.PORT || 3000);
 // save profiles on process exit
 process.on('SIGINT', () => { console.log('SIGINT received — saving profiles'); saveProfiles(); process.exit(0); });
 process.on('SIGTERM', () => { console.log('SIGTERM received — saving profiles'); saveProfiles(); process.exit(0); });
