@@ -355,33 +355,7 @@ client.on('interactionCreate', async i => {
         }
       };
 
-      // Seed example players when opening match t7
-      if (id === 't7') {
-        const m = matches[id];
-        const seed = [
-          ['Anpha','Vô danh','attack1'],['Beto','Quạt dù công','defend3'],['Cami','Quyền','attack2'],['Doran','Hoành đao','defend1'],
-          ['Elric','Song đao','attack3'],['Fenix','Cửu kiếm','defend2'],['Galen','Quạt dù heal','attack1'],['Hatori','Quạt dù ném','defend3'],
-          ['Isamu','Đại đao','attack2'],['Joren','Vô danh','defend1'],['Kaido','Quạt dù công','attack3'],['Liora','Quyền','defend2'],
-          ['Marius','Hoành đao','attack1'],['Neko','Song đao','defend3'],['Orion','Cửu kiếm','attack2'],['Phaedra','Quạt dù heal','defend1'],
-          ['Quirin','Quạt dù ném','attack3'],['Ragna','Đại đao','defend2'],['Sylas','Vô danh','attack1'],['Taro','Quạt dù công','defend3'],
-          ['Ulric','Quyền','attack2'],['Veyra','Hoành đao','defend1'],['Wendel','Song đao','attack3'],['Xavia','Cửu kiếm','defend2'],
-          ['Yorin','Quạt dù heal','attack1'],['Zarek','Quạt dù ném','defend3'],['Arion','Đại đao','attack2'],['Belric','Vô danh','defend1'],
-          ['Calen','Quạt dù công','attack3'],['Darius','Quyền','defend2'],['Emeric','Hoành đao','attack1'],['Fenrir','Song đao','defend3'],
-          ['Gideon','Cửu kiếm','attack2'],['Helios','Quạt dù heal','defend1'],
-          // asian names (native script)
-          ['张伟','Quạt dù công','attack1'],['김민호','Quyền','defend2'],['佐藤春','Hoành đao','attack3'],['李明','Cửu kiếm','defend1'],['中村優衣','Song đao','defend3']
-        ];
-        seed.forEach((s,idx) => {
-          const [name, weapon, slot] = s;
-          const pid = `seed_${idx}`;
-          const player = { id: pid, name, weapon };
-          // push to slot
-          if (slot && m.slots[slot]) m.slots[slot].push({ id: pid, name, weapon });
-          // push to main team
-          if (slot && slot.startsWith('attack')) m.attack.push({ id: pid, name, weapon, team: 'attack' });
-          else if (slot && slot.startsWith('defend')) m.defend.push({ id: pid, name, weapon, team: 'defend' });
-        });
-      }
+      
 
       const ch = client.channels.cache.get(MATCH_CHANNEL_ID);
       const msg = await ch.send({
