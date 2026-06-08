@@ -644,6 +644,15 @@ client.on('interactionCreate', async i => {
     const profile = profiles[userId];
     if (!profile)
       return i.reply({ content: '⚠️ Bạn chưa báo danh profile -> đến kênh báo danh bang chiến', ephemeral: true });
+ // Determine whether the user is currently registered in this match
+    const inMain = (m.attack || []).some(p => p.id === userId) || (m.defend || []).some(p => p.id === userId) || (m.reserve || []).some(p => p.id === userId);
+    const inSlots = Object.values(m.slots || {}).flat().some(p => p.id === userId);
+    const wasRegistered = inMain || inSlots;
+
+    // If user clicks cancel but is not registered (or admin already removed them), inform them instead of logging
+    if (action === 'cancel' && !wasRegistered) {
+      return i.reply({ content: '⚠️ Bạn chưa đăng ký', ephemeral: true });
+    }
 
     m.attack = m.attack.filter(p => p.id !== userId);
     m.defend = m.defend.filter(p => p.id !== userId);
