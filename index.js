@@ -83,11 +83,12 @@ const commands = [
           { name: '🔵 Cửu kiếm', value: 'Cửu kiếm' },
           { name: '🟢 Quạt dù công', value: 'Quạt dù công' },
           { name: '🟢 Quạt dù heal', value: 'Quạt dù heal' },
-          { name: '🟣 Quạt dù ném', value: 'Quạt dù ném' },
+          { name: '🟣 Dù roi ném', value: 'Dù roi ném' },
           { name: '🟣 Quyền', value: 'Quyền' },
+          { name: '🟣 Song đao', value: 'Song đao' },
           { name: '🟤 Đại đao', value: 'Đại đao' },
-          { name: '🟤 Hoành đao', value: 'Hoành đao' },
-          { name: '🟣 Song đao', value: 'Song đao' }
+          { name: '🟤 Hoành đao', value: 'Hoành đao' }
+          
         )
     ),
 
@@ -122,14 +123,14 @@ const commands = [
       .setRequired(true)
       .addChoices(
         { name: '🔵 Vô danh', value: 'Vô danh' },
-        { name: '🔵 Cửu kiếm', value: 'Cửu kiếm' },
-        { name: '🟢 Quạt dù công', value: 'Quạt dù công' },
-        { name: '🟢 Quạt dù heal', value: 'Quạt dù heal' },
-        { name: '🟣 Quạt dù ném', value: 'Quạt dù ném' },
-        { name: '🟣 Quyền', value: 'Quyền' },
-        { name: '🟤 Đại đao', value: 'Đại đao' },
-        { name: '🟤 Hoành đao', value: 'Hoành đao' },
-        { name: '🟣 Song đao', value: 'Song đao' }
+          { name: '🔵 Cửu kiếm', value: 'Cửu kiếm' },
+          { name: '🟢 Quạt dù công', value: 'Quạt dù công' },
+          { name: '🟢 Quạt dù heal', value: 'Quạt dù heal' },
+          { name: '🟣 Dù roi ném', value: 'Dù roi ném' },
+          { name: '🟣 Quyền', value: 'Quyền' },
+          { name: '🟣 Song đao', value: 'Song đao' },
+          { name: '🟤 Đại đao', value: 'Đại đao' },
+          { name: '🟤 Hoành đao', value: 'Hoành đao' }
       )
   )
   .addStringOption(o =>
@@ -236,7 +237,7 @@ function getWeaponEmoji(weapon) {
   const w = weapon.toString();
   if (w === 'Vô danh' || w === 'Cửu kiếm') return '🔵';
   if (w === 'Quạt dù công' || w === 'Quạt dù heal') return '🟢';
-  if (w === 'Quạt dù ném' || w === 'Song đao' || w === 'Quyền') return '🟣';
+  if (w === 'Dù roi ném' || w === 'Song đao' || w === 'Quyền') return '🟣';
   if (w === 'Đại đao' || w === 'Hoành đao') return '🟤';
   return '';
 }
@@ -681,7 +682,7 @@ client.on('interactionCreate', async i => {
     }
 
     if (action === 'cancel') {
-      logProfile(userId, profile.name, profile.weapon, `❌ Hủy đăng ký (${id}):`);
+      logProfile(userId, profile.name, profile.weapon, `❌ Đã tự sủi khỏi danh sách đăng ký (${id}):`);
     }
 
     autoFill(m);
